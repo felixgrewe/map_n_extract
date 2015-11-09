@@ -24,7 +24,7 @@ Installed globally
 ###Illumina sequence data
 You can use either single-end or paired-end reads in this analysis but all reads will be handled as single-ended. You can trim your reads before use; we used [Trimmomatic](http://www.usadellab.org/cms/?page=trimmomatic).  
 
-###Have you files ready  
+###Have your files ready  
 You need several files:  
 1. A comma separated table that points to your sequence read files (see [seq_loc.csv](https://github.com/felixgrewe/CEGMA_CDS_extract/blob/master/seq_loc.csv) as an example)  
 2. Reference fasta file; we used the CEGMA standard output file *output.cegma.dna*  
