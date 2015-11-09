@@ -2,18 +2,15 @@
 #
 # CEGMA_CDS_extract.pl
 #
-# Discription  :	Maps NGS reads to CEGMA gene regions and extracts CDS for phylogenetic analyses.
+# Discription  : Maps NGS reads to gene regions and extracts CDS for phylogenetic analyses.
 #
-# OS prog req  :    bowtie2, samtools, bam2consensus, muscle, raxmlHPC
+# OS prog req  : bowtie2, samtools, bam2consensus, muscle, raxmlHPC
 #
-# files req    :    output.cegma.dna, csv table
+# files req    : csv table, output.cegma.dna, output.cegma.local.gff
 # 
-# Author       :	Felix Grewe (fgrewe@fieldmuseum.org), www.felixgrewe.de
-# Date created :	05/29/2015
-# Last modified:	11/03/2015
+# Author       : Felix Grewe (fgrewe@fieldmuseum.org), www.felixgrewe.de
+# Date created : 05/29/2015
 #
-# Modifications:    07/23/2015: paired-end reads for lichens; added samtoolsDepth, changed mpileup -A, switch for single end, changed trimmomatic parameters
-#					11/03/2015: soft coding, only used bambam, no trimmomatic, no depth, no mpileup
 
 use strict;
 
