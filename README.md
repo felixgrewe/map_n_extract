@@ -17,6 +17,11 @@ Installed globally
 - [muscle](http://www.drive5.com/muscle/)  
 - [raxmlHPC](http://sco.h-its.org/exelixis/web/software/raxml/index.html) (optional)  
 
+addtional Perl modules
+- File::Which
+- Getopt::Long
+- Pod::Usage
+
 -------------------------
 
 ##To run the script:
