@@ -1,0 +1,10 @@
+#fatsa_ID,Paired Read Name For,Optional Paired Read Name Rev
+name1,/path/to/your/read/file/single_end_read_file1.fastq
+name2,/path/to/your/read/file/paired_end_forward_read2.fastq,/path/to/your/read/file/paired_end_reverse_read2.fastq
+name3,/path/to/your/read/file/paired_end_forward_read3.fastq,/path/to/your/read/file/paired_end_reverse_read3.fastq
+name4,/path/to/your/read/file/single_end_read_file4.fastq
+name5,/path/to/your/read/file/single_end_read_file5a.fastq,/path/to/your/read/file/single_end_read_file5b.fastq
+name6,/path/to/your/read/file/single_end_read_file6.fastq
+name7,/path/to/your/read/file/single_end_read_file7.fastq
+name8,/path/to/your/read/file/single_end_read_file8.fastq
+name9,/path/to/your/read/file/single_end_read_file9.fastq
