@@ -380,7 +380,7 @@ if (defined($run_phylo)) {
 	mkdir $phy_folder;
 	chdir ($phy_folder) or die "Can't change into $phy_folder";
 	
-	my $move = 'mv ../'.$CDS_folder.'/*.CDS.phy .';
+	my $move = 'mv ../'.$CDS_folder.'/*_CDS.phy .';
 	system ($move);
 
 	foreach my $gene_name (sort(keys %sliced_alis)) {
@@ -394,7 +394,7 @@ if (defined($run_phylo)) {
 	}
 	chdir ("..");
 } else {
-	my $del = 'rm ../'.$CDS_folder.'/*.CDS.phy .';
+	my $del = 'rm ../'.$CDS_folder.'/*_CDS.phy .';
 	system ($del);
 }
 
