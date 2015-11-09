@@ -262,31 +262,6 @@ foreach my $key (sort(keys %seq)) {
 	system ($muscle);
 }
 	
-#####################################################
-# Build RaxML phylogenies on all CEGMA region files #
-#####################################################
-
-if (!defined($no_phylo)) {
-
-	foreach my $key (sort(keys %seq)) {
-		my ($gene_name) = $key =~ m/^\>(.*)/;
-		my $alignment = $gene_name."_regions_muscle.fas";
-		my $file_out = $gene_name."_regions_muscle.phy";
-		my $rax_out = $gene_name."_regions_RAXML";
-		
-		my $in = Bio::AlignIO->new(-file => $alignment, -format => "fasta");
-		my $out = Bio::AlignIO->new(-file => ">".$file_out, -format => "phylip");
-		
-		while (my $aln = $in = $in->next_aln) {
-			$out->write_aln($aln);
-		}
-		
-		my $raxml = 'raxmlHPC -s '.$file_out.' -n '.$rax_out.' -m GTRGAMMA -f a -p 194955 -x 12345 -# 100 -T '.$cores;
-		
-		system ($raxml);
-	}
-}
-
 ########################
 # Alignment processing #
 ########################
