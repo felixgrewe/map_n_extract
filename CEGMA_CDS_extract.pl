@@ -50,20 +50,6 @@ GetOptions(	'fasta|f=s' 	=> \$fasta,
 pod2usage(-verbose=>2) if $help;
 pod2usage(-verbose=>1) unless $table;
 
-# if (@ARGV == 5) {
-    # print "Starting program...\n\n";  
-# } else {
-    # print STDERR "usage: $0 <output.cegma.dna> <output.cegma.local.gff> <table> <Reference_name> <no_of_cores>\n";
-    # print STDERR "Please supply the output.cegma.dna file, output.cegma.local.gff, tab seperated table with sequencing information (taxon_name, absolute_path_to_forward_fastq_sequence_location, [absolute_path_to_reverse_fastq_sequence_location]), taxon_name of Reference sequence, and number of how many core you want to use!\n";
-    # exit; 
-# }
-
-# my $fasta = shift(@ARGV);
-# my $gff = shift(@ARGV);
-# my $table = shift(@ARGV);
-# my $reference = shift(@ARGV);
-# my $cores = shift(@ARGV);
-
 ######################
 # Check dependencies #
 ######################
@@ -202,7 +188,7 @@ for (my $i = 0; $i < @taxon; $i++) {
 	system ($samtoolsView);
 	system ($samtoolsSort);
 #	system ($samtoolsDepth);
-	system ($samtoolsMpileup);
+#	system ($samtoolsMpileup);
 	system ($samtoolsIndex);
 #	system ($samtoolsMpileupUF);
 #	system ($fastq2fasta);
@@ -276,34 +262,36 @@ foreach my $key (sort(keys %seq)) {
 	system ($muscle);
 }
 	
-# #####################################################
-# # Build RaxML phylogenies on all CEGMA region files #
-# #####################################################
+#####################################################
+# Build RaxML phylogenies on all CEGMA region files #
+#####################################################
 
-# if (!defined($no_phylo)) {
+if (!defined($no_phylo)) {
 
-	# foreach my $key (sort(keys %seq)) {
-		# my ($gene_name) = $key =~ m/^\>(.*)/;
-		# my $alignment = $gene_name."_regions_muscle.fas";
-		# my $file_out = $gene_name."_regions_muscle.phy";
-		# my $rax_out = $gene_name."_regions_RAXML";
+	foreach my $key (sort(keys %seq)) {
+		my ($gene_name) = $key =~ m/^\>(.*)/;
+		my $alignment = $gene_name."_regions_muscle.fas";
+		my $file_out = $gene_name."_regions_muscle.phy";
+		my $rax_out = $gene_name."_regions_RAXML";
 		
-		# my $in = Bio::AlignIO->new(-file => $alignment, -format => "fasta");
-		# my $out = Bio::AlignIO->new(-file => ">".$file_out, -format => "phylip");
+		my $in = Bio::AlignIO->new(-file => $alignment, -format => "fasta");
+		my $out = Bio::AlignIO->new(-file => ">".$file_out, -format => "phylip");
 		
-		# while (my $aln = $in = $in->next_aln) {
-			# $out->write_aln($aln);
-		# }
+		while (my $aln = $in = $in->next_aln) {
+			$out->write_aln($aln);
+		}
 		
-		# my $raxml = 'raxmlHPC -s '.$file_out.' -n '.$rax_out.' -m GTRGAMMA -f a -p 194955 -x 12345 -# 100 -T '.$cores;
+		my $raxml = 'raxmlHPC -s '.$file_out.' -n '.$rax_out.' -m GTRGAMMA -f a -p 194955 -x 12345 -# 100 -T '.$cores;
 		
-		# system ($raxml);
-	# }
-# }
+		system ($raxml);
+	}
+}
 
 ########################
 # Alignment processing #
 ########################
+
+# chdir ($ali_folder) or die "Can't change into $ali_folder";
 
 my %sliced_alis = ();
 my %combined_alis = ();

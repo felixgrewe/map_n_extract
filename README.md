@@ -1,8 +1,8 @@
 #CEGMA_CDS_extract
 
-A script that maps similar reads to a reference sequence file and extracts genes by annotation (such as the [CEGMA](http://korflab.ucdavis.edu/datasets/cegma/) output) with the advantage that each individual gene remains in frame with the genetic code. This allows for subsequent analyses for example to split the data by codon position or to select for individual genes. Although we used and tested the program specificlly for the CEGMA output each gff annotated and reference sequence should work.
+A script that maps similar reads to a reference sequence file and extracts genes by annotation (such as the [CEGMA](http://korflab.ucdavis.edu/datasets/cegma/) output) with the advantage that each individual gene sequence remains in-frame. This allows for subsequent analyses, for example to split the data by codon position or to select for individual genes. Although we used and tested the program specifically for the CEGMA output each gff annotation and reference fasta sequence should work.
 
-The script offers an option to build a RAxML phylogeny of each individual alignment. However, individual alignments can also be merged into a supermatrix for further analysis.
+The script offers an option to build a RAxML phylogenies of each individual alignment. However, individual alignments can also be merged into a supermatrix for further analysis.
 
 If you use this code please cite:  
 Steven D. Leavitt, Felix Grewe, Todd Widhelm, Lucia Muggia, Brian Wray, and H. Thorsten Lumbsch **Robust phylogenies of lichen-forming fungi inferred from genomes - overkill in the era of phylogenomics or reassurance?** *In prep*  
@@ -10,25 +10,25 @@ Steven D. Leavitt, Felix Grewe, Todd Widhelm, Lucia Muggia, Brian Wray, and H. T
 ##Requirements:
 
 Installed globally  
-- Perl (with BioPerl)  
-- bowtie2  
-- samtools   
-- bam2consensus (from the bambam package)  
-- muscle  
-- raxmlHPC (optional)  
+- Perl (with [BioPerl](http://www.bioperl.org/wiki/Main_Page))  
+- [bowtie2](http://bowtie-bio.sourceforge.net/bowtie2/index.shtml)  
+- [samtools](http://samtools.sourceforge.net/)   
+- bam2consensus (from the [BamBam](http://udall-lab.byu.edu/Research/Software/BamBam.aspx) package)  
+- [muscle](http://www.drive5.com/muscle/)  
+- [raxmlHPC](http://sco.h-its.org/exelixis/web/software/raxml/index.html) (optional)  
 
 -------------------------
 
 ##To run the script:
 
 ###Illumina sequence data
-You can use either single-end or paired-end reads in this analysis but all reads will be handled as single-ended. We recommend to trim your reads before use; e.g. with [Trimmomatic](http://www.usadellab.org/cms/?page=trimmomatic).  
+You can use either single-end or paired-end reads in this analysis but all reads will be handled as single-ended. You can trim your reads before use; we used [Trimmomatic](http://www.usadellab.org/cms/?page=trimmomatic).  
 
 ###Have you files ready  
-You need several files to get going:  
+You need several files:  
 1. A comma separated table that points to your sequence read files (see [seq_loc.csv](https://github.com/felixgrewe/CEGMA_CDS_extract/blob/master/seq_loc.csv) as an example)  
 2. Reference fasta file; we used the CEGMA standard output file *output.cegma.dna*  
-3. Annotation of the reference fasta file (see 2) in gff format; we used the CEGMA standard output file *output.cegma.local.gff*  
+3. Annotation of the reference .fasta file in .gff format; we used the CEGMA standard output file *output.cegma.local.gff*  
 
 ###Run the script 
 ~~~
@@ -44,11 +44,11 @@ CEGMA_CDS_extract.pl  -t [-f -g -r -p -y -h]
  [-help -h]					Displays this basic usage information 
 ~~~
 
->Please note that you chose if you want to run RAxML analyses for each individual gene alignment.
+>Please note that you can chose to run RAxML analyses for each individual gene alignment with option -y.
 
 ###Output
-The script will produce two output folders. The *OUTPUT_alignments* folder holds all alignments of mapping across whole fasta reference sequences and the *OUTPUT_good_CDS_alignments* folder contains all good gene alignments which are in frame to the open reading frame of the reference annotation. 
-If you chose to analyze phylogenetic inferences for each individual good gene alignment (option -y), you'll also see a *OUTPUT_phylogenies* folder that contains all RAxML trees.
+The script will produce two output folders. The *OUTPUT_alignments* folder holds all alignments of mapping across whole fasta reference sequences and the *OUTPUT_good_CDS_alignments* folder contains all good gene alignments which are in frame to the open reading frame of the reference annotation.  
+If you chose to analyze phylogenetic inferences for each individual gene alignment (option -y), you'll also see a *OUTPUT_phylogenies* folder that contains all RAxML trees.
 
 ###Further Processing
 
@@ -60,8 +60,8 @@ perl FASconCAT_v1.0.pl
 and follow the instructions.
 
 ####Combining all trees
-If you chose the -f option before and see the *OUTPUT_phylogenies* folder, you can combine all individual gene trees into one newick file with:  
+If you chose the -y option before and see the *OUTPUT_phylogenies* folder, you can combine all individual gene trees into one newick file (all_tree.tre) with:  
 ~~~
-cat ./OUTPUT_phylogenies/*\.bipartitions\.*RAXML .
+cat ./OUTPUT_phylogenies/bipartitions\.*RAXML >> all_tree.tre
 ~~~
 
