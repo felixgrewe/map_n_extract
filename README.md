@@ -1,8 +1,8 @@
 #map_n_extract
 
-A script that maps similar reads to a reference sequence file and extracts genes by annotation (such as the [CEGMA](http://korflab.ucdavis.edu/datasets/cegma/) output) with the advantage that each individual gene sequence remains in-frame. This allows for subsequent analyses, for example to split the data by codon position or to select for individual genes. Although we used and tested the program specifically for the CEGMA output each gff annotation and reference fasta sequence should work.
+A script that maps similar reads to a reference sequence file and extracts genes by annotation (such as the [CEGMA](http://korflab.ucdavis.edu/datasets/cegma/) output) with the advantage that each individual gene sequence remains in-frame. This allows for a wide range of subsequent analyses; for example, splitting the data by codon position or selecting individual genes. Although we used and tested the program specifically for using the CEGMA output, any gff annotation and reference fasta sequence should work.
 
-The script offers an option to build a RAxML phylogenies of each individual alignment. However, individual alignments can also be merged into a supermatrix for further analysis.
+The script offers an option to build RAxML phylogenies from each individual alignment. However, individual alignments can also be merged into a supermatrix for further analysis.
 
 If you use this code please cite:  
 Steven D. Leavitt, Felix Grewe, Todd Widhelm, Lucia Muggia, Brian Wray, and H. Thorsten Lumbsch **Robust phylogenies of lichen-forming fungi inferred from genomes - overkill in the era of phylogenomics or reassurance?** *In prep*  
@@ -27,7 +27,7 @@ addtional Perl modules
 ##To run the script:
 
 ###Illumina sequence data
-You can use either single-end or paired-end reads in this analysis but all reads will be handled as single-ended. You can trim your reads before use; we used [Trimmomatic](http://www.usadellab.org/cms/?page=trimmomatic).  
+You can use either single-end or paired-end reads in this analysis, but all reads will be handled as single-ended. We recommend that you trim your reads before use; we used [Trimmomatic](http://www.usadellab.org/cms/?page=trimmomatic).  
 
 ###Have your files ready  
 You need several files:  
@@ -52,7 +52,7 @@ map_n_extract.pl  -t [-f -g -r -p -y -h]
 >Please note that you can chose to run RAxML analyses for each individual gene alignment with option -y.
 
 ###Output
-The script will produce two output folders. The *OUTPUT_alignments* folder holds all alignments of mapping across whole fasta reference sequences and the *OUTPUT_good_CDS_alignments* folder contains all good gene alignments which are in frame to the open reading frame of the reference annotation.  
+The script will produce two output folders. The *OUTPUT_alignments* folder holds all alignments of mapping across whole fasta reference sequences and the *OUTPUT_good_CDS_alignments* folder contains only gene alignments which are in frame with the open reading frame of the reference annotation.  
 If you chose to analyze phylogenetic inferences for each individual gene alignment (option -y), you'll also see a *OUTPUT_phylogenies* folder that contains all RAxML trees.
 
 ###Further Processing
