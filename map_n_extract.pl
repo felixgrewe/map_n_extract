@@ -1,6 +1,6 @@
 #!/usr/bin/perl -w
 #
-# CEGMA_CDS_extract.pl
+# map_n_extract.pl
 #
 # Discription  : Maps NGS reads to gene regions and extracts CDS for phylogenetic analyses.
 #
@@ -386,11 +386,11 @@ CEGMA_CDS_extract
 
 =head1 DESCRIPTION
 
-   Maps NGS reads to CEGMA gene regions and extracts CDS for phylogenetic analyses.
+   Maps NGS reads to annotated gene regions and extracts CDS for phylogenetic analyses.
 
 =head1 SYNOPSIS
 
-CEGMA_CDS_extract.pl  -t [-f -g -r -p -y -h]
+map_n_extract.pl  -t [-f -g -r -p -y -h]
 
  -table -t <.csv>		Comma seperated table with NGS sequence read location (name,se_or_pe1_reads[,se_or_pe2_reads])
  

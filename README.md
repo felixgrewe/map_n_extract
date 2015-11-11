@@ -1,4 +1,4 @@
-#CEGMA_CDS_extract
+#map_n_extract
 
 A script that maps similar reads to a reference sequence file and extracts genes by annotation (such as the [CEGMA](http://korflab.ucdavis.edu/datasets/cegma/) output) with the advantage that each individual gene sequence remains in-frame. This allows for subsequent analyses, for example to split the data by codon position or to select for individual genes. Although we used and tested the program specifically for the CEGMA output each gff annotation and reference fasta sequence should work.
 
@@ -37,7 +37,7 @@ You need several files:
 
 ###Run the script 
 ~~~
-CEGMA_CDS_extract.pl  -t [-f -g -r -p -y -h]
+map_n_extract.pl  -t [-f -g -r -p -y -h]
 
  -table -t <.csv>			Comma seperated table with NGS sequence read location (name,se_or_pe1_reads[,se_or_pe2_reads])
  
