@@ -51,7 +51,7 @@ map_n_extract.pl  -t [-f -g -r -p -y -h]
 >Please note that you can chose to run RAxML analyses for each individual gene alignment with option -y.
 
 ###Output
-The script will produce two output folders. The *OUTPUT_alignments* folder holds all alignments of mapping across whole fasta reference sequences and the *OUTPUT_good_CDS_alignments* folder contains only gene alignments which are in frame with the open reading frame of the reference annotation.  
+The script will produce two output folders. The **OUTPUT_alignments** folder holds all alignments of mapping across whole fasta reference sequences and the **OUTPUT_good_CDS_alignments** folder contains only gene alignments which are in frame with the open reading frame of the reference annotation.  
 If you chose to analyze phylogenetic inferences for each individual gene alignment (option -y), you'll also see a **OUTPUT_phylogenies** folder that contains all RAxML trees.
 
 ###Further Processing
