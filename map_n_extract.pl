@@ -53,6 +53,7 @@ pod2usage(-verbose=>1) unless $table;
 
 which("bowtie2") or die "Seems like bowtie2 is not installed.\n";
 which("samtools") or die "Seems like samtools is not installed.\n";
+which("bcftools") or die "Seems like bcftools is not installed.\n";
 which("vcfutils.pl") or die "Seems like vcfutils.pl is not installed.\n";
 which("muscle") or die "Seems like muscle is not installed.\n";
 if (defined($run_phylo)) {
