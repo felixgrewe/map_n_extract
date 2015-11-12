@@ -53,7 +53,7 @@ pod2usage(-verbose=>1) unless $table;
 
 which("bowtie2") or die "Seems like bowtie2 is not installed.\n";
 which("samtools") or die "Seems like samtools is not installed.\n";
-which("bam2consensus") or die "Seems like bam2consensus from bambam package is not installed.\n";
+which("vcfutils.pl") or die "Seems like vcfutils.pl is not installed.\n";
 which("muscle") or die "Seems like muscle is not installed.\n";
 if (defined($run_phylo)) {
 	which("raxmlHPC") or die "Seems like raxmlHPC is not installed.\n";
@@ -172,25 +172,17 @@ for (my $i = 0; $i < @taxon; $i++) {
 	my $bowtie2 = 'bowtie2 -x '.$taxon[$i].' -U '.$fastq_reads.' -N 1 -S '.$taxon[$i].'.sam -p '.$cores;
 	my $samtoolsView = 'samtools view -bS '.$taxon[$i].'.sam > '.$taxon[$i].'.bam';
 	my $samtoolsSort = 'samtools sort '.$taxon[$i].'.bam '.$taxon[$i].'.sorted';
-	my $samtoolsDepth = 'samtools depth -a -a '.$taxon[$i].'.sorted.bam > '.$taxon[$i].'.depth';
-	my $samtoolsMpileup = 'samtools mpileup -A -Q 0 -f ../'.$fasta.' '.$taxon[$i].'.sorted.bam > '.$taxon[$i].'.mpileup';
 	my $samtoolsIndex = 'samtools index '.$taxon[$i].'.sorted.bam';
-	my $samtoolsMpileupUF = 'samtools mpileup -uf '.$taxon[$i].'.fasta '.$taxon[$i].'.sorted.bam | bcftools call -c | vcfutils.pl vcf2fq > '.$taxon[$i].'_vcfcons.fastq';
-	my $fastq2fasta = 'awk \'/^@/,/^+$/\' '.$taxon[$i].'_vcfcons.fastq | perl -pe "s/@/>/ ; s/\\+//" > '.$taxon[$i].'_vcfcons.fasta'; 
-	my $bam2consensus = 'bam2consensus -i 0.1 '.$taxon[$i].'.sorted.bam > '.$taxon[$i].'_bambamcons.fas';
-	my $copy = 'cp '.$taxon[$i].'_bambamcons.fas ../'.$ali_folder;
+	my $samtoolsMpileupUF = 'samtools mpileup -uf ../'.$fasta.' '.$taxon[$i].'.sorted.bam | bcftools call -c | vcfutils.pl vcf2fq > '.$taxon[$i].'_vcfcons.fastq';
+	my $copy_vcf = 'cp '.$taxon[$i].'_vcfcons.fastq ../'.$ali_folder;
 	
-	system ($bowtieBuild);
-	system ($bowtie2);
-	system ($samtoolsView);
-	system ($samtoolsSort);
-#	system ($samtoolsDepth);
-#	system ($samtoolsMpileup);
-	system ($samtoolsIndex);
-#	system ($samtoolsMpileupUF);
-#	system ($fastq2fasta);
-	system ($bam2consensus);
-	system ($copy);
+	# system ($bowtieBuild);
+	# system ($bowtie2);
+	# system ($samtoolsView);
+	# system ($samtoolsSort);
+	# system ($samtoolsIndex);
+	# system ($samtoolsMpileupUF);
+	# system ($copy_vcf);
 	
 	print "###Bowtie2 for $taxon[$i] finished\n\n";
 	
@@ -220,22 +212,15 @@ for (my $i = 0; $i < @taxon; $i++) {
 	my $mapping_id = 0;
 	my %mapping_seq = ();
 
-	open (MAPPING_FASTA, "$taxon[$i]_bambamcons.fas") or die "Can't open mapping fasta file for $taxon[$i]!!!\n";
+	my $inseq = Bio::SeqIO->new(-file => "<".$taxon[$i]."_vcfcons.fastq", -format => "fastq");
 	
-	while (my $line = readline(MAPPING_FASTA)) {
-		chomp ($line);
-		if ($line =~ m/^>/) {       
-			$mapping_id = $line;
-			$mapping_seq{$mapping_id} = "";
-		} else {     
-			$mapping_seq{$mapping_id} .= $line;
-		}
+	while (my $seq = $inseq->next_seq) {
+		$mapping_id = $seq->id;
+		$mapping_seq{$mapping_id} = $seq->seq();
 	}
 	
-	close MAPPING_FASTA or die "Can't close mapping fasta file!!!\n";
-	
 	foreach my $mapping_key (sort(keys %mapping_seq)) {
-		my ($gene_name) = $mapping_key =~ m/^\>(.*)/;
+		my $gene_name = $mapping_key;
 		
 		open (OUTPUT_FASTA, ">>".$gene_name."_region.fas") or die "Can't open output fasta file!!!\n";
 		print OUTPUT_FASTA ">$taxon[$i]\n";
@@ -354,7 +339,7 @@ if (defined($run_phylo)) {
 	}
 	chdir ("..");
 } else {
-	my $del = 'rm ../'.$CDS_folder.'/*_CDS.phy .';
+	my $del = 'rm ./'.$CDS_folder.'/*_CDS.phy';
 	system ($del);
 }
 
