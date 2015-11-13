@@ -67,6 +67,6 @@ and follow the instructions.
 ####Combining all trees
 If you chose the -y option before and see the **OUTPUT_phylogenies** folder, you can combine all individual gene trees into one newick file (**all_tree.tre**) with:  
 ~~~
-cat ./OUTPUT_phylogenies/bipartitions\.*RAXML >> all_tree.tre
+cat ./OUTPUT_phylogenies/*bipartitions\.*RAXML >> all_tree.tre
 ~~~
 
