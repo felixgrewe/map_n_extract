@@ -177,13 +177,13 @@ for (my $i = 0; $i < @taxon; $i++) {
 	my $samtoolsMpileupUF = 'samtools mpileup -uf ../'.$fasta.' '.$taxon[$i].'.sorted.bam | bcftools call -c | vcfutils.pl vcf2fq > '.$taxon[$i].'_vcfcons.fastq';
 	my $copy_vcf = 'cp '.$taxon[$i].'_vcfcons.fastq ../'.$ali_folder;
 	
-	# system ($bowtieBuild);
-	# system ($bowtie2);
-	# system ($samtoolsView);
-	# system ($samtoolsSort);
-	# system ($samtoolsIndex);
-	# system ($samtoolsMpileupUF);
-	# system ($copy_vcf);
+	system ($bowtieBuild);
+	system ($bowtie2);
+	system ($samtoolsView);
+	system ($samtoolsSort);
+	system ($samtoolsIndex);
+	system ($samtoolsMpileupUF);
+	system ($copy_vcf);
 	
 	print "###Bowtie2 for $taxon[$i] finished\n\n";
 	
