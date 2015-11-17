@@ -12,7 +12,7 @@ Steven D. Leavitt, Felix Grewe, Todd Widhelm, Lucia Muggia, Brian Wray, and H. T
 Installed globally  
 - Perl (with [BioPerl](http://www.bioperl.org/wiki/Main_Page))  
 - [bowtie2](http://bowtie-bio.sourceforge.net/bowtie2/index.shtml)   
-- [samtools](http://samtools.sourceforge.net/) (with vcfutils.pl)   
+- [BamTools](http://sourceforge.net/projects/bamtools/) (with vcfutils.pl)   
 - bcftools
 - [muscle](http://www.drive5.com/muscle/)  
 - [raxmlHPC](http://sco.h-its.org/exelixis/web/software/raxml/index.html) (optional)  
