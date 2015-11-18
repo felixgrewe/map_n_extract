@@ -37,7 +37,7 @@ You need several files:
 
 ###Run the script 
 ~~~
-map_n_extract.pl  -t [-f -g -r -p -y -h]
+perl map_n_extract.pl  -t [-f -g -r -p -y -h]
 
  -table -t <.csv>			Comma seperated table with NGS sequence read location (name,se_or_pe1_reads[,se_or_pe2_reads])
  
