@@ -57,7 +57,7 @@ If you chose to analyze phylogenetic inferences for each individual gene alignme
 ###Further Processing
 
 ####Supermatrix
-You can use the program [FASconCAT](https://www.zfmk.de/en/research/research-centres-and-groups/fasconcat) (Kueck & Meusemann, 2010) to build a supermatrix. Place the FASconCAT perl scrip into the *OUTPUT_good_CDS_alignment* folder, execute with
+You can use the program [FASconCAT](https://www.zfmk.de/en/research/research-centres-and-groups/fasconcat) (Kueck & Meusemann, 2010) to build a supermatrix. Place the FASconCAT perl scrip into the **OUTPUT_good_CDS_alignment** folder, execute with
 ~~~
 perl FASconCAT_v1.0.pl
 ~~~
