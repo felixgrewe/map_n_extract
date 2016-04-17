@@ -5,7 +5,7 @@ A script that maps similar reads to a reference sequence file and extracts genes
 The script offers an option to build RAxML phylogenies from each individual alignment. However, individual alignments can also be merged into a supermatrix for further analysis.
 
 If you use this code please cite:  
-Steven D. Leavitt, Felix Grewe, Todd Widhelm, Lucia Muggia, Brian Wray, and H. Thorsten Lumbsch **Robust phylogenies of lichen-forming fungi inferred from genomes - overkill in the era of phylogenomics or reassurance?** *In prep*  
+Leavitt, S.D., Grewe, F., Widhelm, T., Muggia, L., Wray, B., & Lumbsch, H.T. (2016). Resolving evolutionary relationships in lichen-forming fungi using diverse phylogenomic datasets and analytical approaches. Scientific Reports, 6:22262. [link](http://www.nature.com/articles/srep22262)
 
 ##Requirements:
 
