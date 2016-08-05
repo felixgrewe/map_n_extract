@@ -43,7 +43,7 @@ perl map_n_extract.pl  -t [-f -g -r -p -y -h]
  [-fasta -f <.fasta>]		reference sequence file (default=output.cegma.dna)
  [-gff -g <.gff>]			annotation of reference sequence file (default=output.cegma.local.gff)
  [-reference -r <STRING>]	Name of reference sequence (default=Ref)
- [-threads -p <INT>]		Number of available phreads (default=8)
+ [-threads -p <INT>]		Number of available threads (default=8)
  [-run_phylo -y]			If you want to run raxML phylogeny for individual genes
  [-help -h]					Displays this basic usage information 
 ~~~
