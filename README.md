@@ -9,7 +9,7 @@ Leavitt, S.D., Grewe, F., Widhelm, T., Muggia, L., Wray, B., & Lumbsch, H.T. (20
 
 ##Requirements:
 
-Installed globally  
+Installed globally (executable must be in one of the directories listed in the PATH environment variable, as shown by `echo $PATH`)
 - Perl (with [BioPerl](http://www.bioperl.org/wiki/Main_Page))  
 - [bowtie2](http://bowtie-bio.sourceforge.net/bowtie2/index.shtml)   
 - [bcftools (with vcfutils.pl) and samtools](http://samtools.github.io/bcftools/)
