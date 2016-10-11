@@ -170,7 +170,7 @@ for (my $i = 0; $i < @taxon; $i++) {
 	print "###Start Bowtie2 for $taxon[$i]\n\n";
 	
 	my $bowtieBuild = 'bowtie2-build ../'.$fasta.' '.$taxon[$i];
-	my $bowtie2 = 'bowtie2 -x '.$taxon[$i].' -U '.$fastq_reads.' -N 1 -S '.$taxon[$i].'.sam -p '.$cores;
+	my $bowtie2 = 'bowtie2 -x '.$taxon[$i].' -U '.$fastq_reads.' --no-unal -N 1 -S '.$taxon[$i].'.sam -p '.$cores;
 	my $samtoolsView = 'samtools view -bS '.$taxon[$i].'.sam > '.$taxon[$i].'.bam';
 	my $samtoolsSort = 'samtools sort '.$taxon[$i].'.bam '.$taxon[$i].'.sorted';
 	my $samtoolsIndex = 'samtools index '.$taxon[$i].'.sorted.bam';
