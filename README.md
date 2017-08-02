@@ -1,4 +1,4 @@
-#map_n_extract
+# map_n_extract
 
 A script that maps similar reads to a reference sequence file and extracts genes by annotation (such as the [CEGMA](http://korflab.ucdavis.edu/datasets/cegma/) output) with the advantage that each individual gene sequence remains in-frame. This allows for a wide range of subsequent analyses; for example, splitting the data by codon position or selecting individual genes. Although we used and tested the program specifically for using the CEGMA output, any gff annotation and reference fasta sequence should work.
 
@@ -7,7 +7,7 @@ The script offers an option to build RAxML phylogenies from each individual alig
 If you use this code please cite:  
 Leavitt, S.D., Grewe, F., Widhelm, T., Muggia, L., Wray, B., & Lumbsch, H.T. (2016). Resolving evolutionary relationships in lichen-forming fungi using diverse phylogenomic datasets and analytical approaches. Scientific Reports, 6:22262. [link](http://www.nature.com/articles/srep22262)
 
-##Requirements:
+## Requirements:
 
 Installed globally (executable must be in one of the directories listed in the PATH environment variable, as shown by `echo $PATH`)
 - Perl (with [BioPerl](http://bioperl.org/index.html))  
@@ -23,18 +23,18 @@ additional Perl modules
 
 -------------------------
 
-##To run the script:
+## To run the script:
 
-###Illumina sequence data
+### Illumina sequence data
 You can use either single-end or paired-end reads in this analysis, but all reads will be handled as single-ended. We recommend that you trim your reads before use; we used [Trimmomatic](http://www.usadellab.org/cms/?page=trimmomatic).  
 
-###Have your files ready  
+### Have your files ready  
 You need several files:  
 1. A comma separated table that points to your sequence read files (see [seq_loc.csv](https://github.com/felixgrewe/CEGMA_CDS_extract/blob/master/seq_loc.csv) as an example)  
 2. Reference fasta file; we used the CEGMA standard output file **output.cegma.dna**  
 3. Annotation of the reference .fasta file in .gff format; we used the CEGMA standard output file **output.cegma.local.gff**  
 
-###Run the script 
+### Run the script 
 ~~~
 perl map_n_extract.pl  -t [-f -g -r -p -y -h]
 
@@ -50,20 +50,20 @@ perl map_n_extract.pl  -t [-f -g -r -p -y -h]
 
 >Please note that you can chose to run RAxML analyses for each individual gene alignment with option -y.
 
-###Output
+### Output
 The script will produce two output folders. The **OUTPUT_alignments** folder holds all alignments of mapping across whole fasta reference sequences and the **OUTPUT_good_CDS_alignments** folder contains only gene alignments which are in frame with the open reading frame of the reference annotation.  
 If you chose to analyze phylogenetic inferences for each individual gene alignment (option -y), you'll also see a **OUTPUT_phylogenies** folder that contains all RAxML trees.
 
-###Further Processing
+### Further Processing
 
-####Supermatrix
+#### Supermatrix
 You can use the program [FASconCAT](https://www.zfmk.de/en/research/research-centres-and-groups/fasconcat) (Kueck & Meusemann, 2010) to build a supermatrix. Place the FASconCAT perl scrip into the **OUTPUT_good_CDS_alignment** folder, execute with
 ~~~
 perl FASconCAT_v1.0.pl
 ~~~
 and follow the instructions.
 
-####Combining all trees
+#### Combining all trees
 If you chose the -y option before and see the **OUTPUT_phylogenies** folder, you can combine all individual gene trees into one newick file (**all_tree.tre**) with:  
 ~~~
 cat ./OUTPUT_phylogenies/*bipartitions\.*RAXML >> all_tree.tre
